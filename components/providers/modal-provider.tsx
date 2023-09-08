@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { AddTaskModal } from "../modals/add-task-modal";
 import { CreateTeamModal } from "../modals/create-team-modal";
 import { MembersModal } from "../modals/members-modal";
+import { AssignMemberModal } from "../modals/assign-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -19,6 +20,7 @@ export const ModalProvider = () => {
       <AddTaskModal />
       <CreateTeamModal />
       <MembersModal />
+      <AssignMemberModal />
     </>
   );
 };

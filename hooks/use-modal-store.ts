@@ -1,8 +1,11 @@
 import { create } from "zustand";
 
-export type ModalType = "addTask" | "createTeam" | "members";
+export type ModalType = "addTask" | "createTeam" | "members" | "assignMember";
 
-interface ModalData {}
+interface ModalData {
+  teamId?: any;
+  taskId?: any;
+}
 
 interface ModalStore {
   type: ModalType | null;
