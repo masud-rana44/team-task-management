@@ -12,7 +12,7 @@ export interface User {
 export interface Team {
   id: string;
   name: string;
-  inviteLink: string;
+  creatorId: string | undefined;
   members: string[];
   tasks: string[];
 }

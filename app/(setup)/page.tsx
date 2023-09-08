@@ -5,6 +5,7 @@ import { useUser } from "@clerk/nextjs";
 
 import { User } from "@/types";
 import { useDataContext } from "@/contexts/data-context";
+import { InitialModal } from "@/components/modals/initial-modal";
 
 const SetupPage = () => {
   const { user } = useUser();
@@ -36,11 +37,9 @@ const SetupPage = () => {
 
   console.log(team);
 
-  // return <InitialModal />;
-
   if (team) return redirect(`/teams/${team.id}`);
 
-  return <div>Setup Page</div>;
+  return <InitialModal />;
 };
 
 export default SetupPage;

@@ -1,14 +1,17 @@
 "use client";
 
 import * as z from "zod";
+import { v4 as uuidv4 } from "uuid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { v4 as uuidv4 } from "uuid";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import React from "react";
+import { useUser } from "@clerk/nextjs";
 
 import {
   Dialog,
-  DialogDescription,
   DialogContent,
   DialogFooter,
   DialogHeader,
@@ -33,9 +36,6 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useModal } from "@/hooks/use-modal-store";
 
-import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -44,11 +44,8 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import React from "react";
-import { ScrollArea } from "../ui/scroll-area";
-import { useLocalStorageState } from "@/hooks/useLocalStorageState";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useDataContext } from "@/contexts/data-context";
-import { useUser } from "@clerk/nextjs";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -95,7 +92,6 @@ export const AddTaskModal = () => {
         assignedTo: "",
         dueDate: values.dueDate.toISOString(),
       };
-      console.log(appData.tasks);
 
       setAppData({ ...appData, tasks: [...appData.tasks, newTask] });
 

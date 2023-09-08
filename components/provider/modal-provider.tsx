@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { AddTaskModal } from "../modals/addTaskModal";
+import { AddTaskModal } from "../modals/add-task-modal";
+import { InitialModal } from "../modals/initial-modal";
 
 export const ModalProvider = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -14,6 +15,7 @@ export const ModalProvider = () => {
 
   return (
     <>
+      <InitialModal />
       <AddTaskModal />
     </>
   );
