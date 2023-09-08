@@ -70,9 +70,9 @@ export const CreateTeamModal = () => {
 
       setAppData({ ...appData, teams: [...appData.teams, newTeam] });
 
+      onClose();
       form.reset();
       router.refresh();
-      window.location.reload();
     } catch (error) {
       console.log(error);
     }

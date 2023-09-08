@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 
 interface NavigationItemProps {
   label: string;
@@ -17,12 +17,17 @@ export const NavigationItem = ({
   id,
 }: NavigationItemProps) => {
   const params = useParams();
+  const pathName = usePathname();
+  const path = pathName.split("/")[1];
 
   return (
     <button
       className={cn(
-        "group relative flex w-full items-center gap-3 rounded-xl px-3 py-[6px] transition dark:hover:bg-[#454547]",
-        id && params.teamId === id && "bg-[#454547]",
+        "group relative flex w-full items-center gap-3 rounded-xl px-3 py-[6px] transition hover:bg-zinc-300 dark:hover:bg-[#454547]",
+        id && params.teamId === id && "bg-zinc-300 dark:bg-[#454547]",
+        path &&
+          label.toLocaleLowerCase().includes(path) &&
+          "bg-zinc-300 dark:bg-[#454547]",
       )}
       onClick={onClick}
     >

@@ -9,7 +9,7 @@ export const NavigationHeader = () => {
   const router = useRouter();
 
   return (
-    <div className="w-full px-3 py-[6px]">
+    <div className="w-full space-y-1 px-3 py-[6px]">
       <NavigationItem
         onClick={() => router.push("/")}
         icon={<Home className="h-5 w-5" />}

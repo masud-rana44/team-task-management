@@ -1,10 +1,17 @@
 "use client";
 
 import { TaskTable } from "@/components/tasks-table";
-import { dummyData } from "@/lib/data";
+import { useDataContext } from "@/contexts/data-context";
+import { useUser } from "@clerk/nextjs";
 
 const TaskPage = () => {
-  const { tasks } = dummyData;
+  const { user } = useUser();
+  const { appData } = useDataContext();
+
+  const tasks = appData.tasks.filter(
+    (task) => task.creatorId === user?.id || task.assignedTo === user?.id,
+  );
+
   return (
     <div>
       <div className="w-full p-4">

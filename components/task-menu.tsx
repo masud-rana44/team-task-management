@@ -6,16 +6,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useModal } from "@/hooks/use-modal-store";
 
-interface TaskMenuProps {}
-
 export const TaskMenu = () => {
-  const { onOpen } = useModal();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="" asChild>

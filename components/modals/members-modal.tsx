@@ -1,7 +1,4 @@
 "use client";
-
-import { useState } from "react";
-
 import {
   Dialog,
   DialogContent,
@@ -12,16 +9,14 @@ import {
 import { useModal } from "@/hooks/use-modal-store";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserAvatar } from "@/components/user-avater";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useDataContext } from "@/contexts/data-context";
 import { useUser } from "@clerk/nextjs";
 import { Button } from "../ui/button";
 
 export const MembersModal = () => {
-  const router = useRouter();
   const params = useParams();
-  const { onOpen, isOpen, onClose, type } = useModal();
-  const [loadingId, setLoadingId] = useState("");
+  const { isOpen, onClose, type } = useModal();
   const { appData, setAppData } = useDataContext();
   const { user } = useUser();
 
@@ -36,8 +31,15 @@ export const MembersModal = () => {
     teamId = params.teamId;
   }
 
-  const handleClick = () => {
-    const currentUser = appData.users.find((u) => u.id === user?.id);
+  const handleClick = (id: string) => {
+    const currentUser = appData.users.find((u) => u.id === id);
+    if (currentUser && !currentUser?.invitations.includes(teamId)) {
+      currentUser?.invitations.push(teamId);
+      const otherUsers = appData.users.filter(
+        (user) => user.id !== currentUser?.id,
+      );
+      setAppData({ ...appData, users: [...otherUsers, currentUser] });
+    }
   };
 
   const otherMembers = appData.users.filter((u) => !u.teams.includes(teamId));
@@ -54,25 +56,39 @@ export const MembersModal = () => {
           </DialogDescription>
         </DialogHeader>
         <ScrollArea className="mt-8 max-h-[420px] pr-6">
-          {otherMembers?.map((member) => (
-            <div key={member.id} className="mb-6 flex items-center gap-x-2">
-              <UserAvatar src={member.profilePicture} />
-              <div className="flex flex-col gap-y-1">
-                <div className="flex items-center gap-x-1 text-xs font-semibold">
-                  {member.username}
+          {otherMembers.length === 0 && (
+            <p className="w-full text-center text-sm text-zinc-500">
+              No available members
+            </p>
+          )}
+          {otherMembers.length > 0 &&
+            otherMembers?.map((member) => (
+              <div key={member.id} className="mb-6 flex items-center gap-x-2">
+                <UserAvatar src={member.profilePicture} />
+                <div className="flex flex-col gap-y-1">
+                  <div className="flex items-center gap-x-1 text-xs font-semibold">
+                    {member.username}
+                  </div>
+                  <p className="text-xs text-zinc-500">{member.email}</p>
                 </div>
-                <p className="text-xs text-zinc-500">{member.email}</p>
-              </div>
 
-              {user?.id !== member.id && loadingId !== member.id && (
-                <div className="ml-auto mr-2">
-                  <Button variant="brand" size="sm">
-                    invite
-                  </Button>
-                </div>
-              )}
-            </div>
-          ))}
+                {user?.id !== member.id && (
+                  <div className="ml-auto mr-2">
+                    {!member.invitations.includes(teamId) ? (
+                      <Button
+                        variant="brand"
+                        size="sm"
+                        onClick={() => handleClick(member.id)}
+                      >
+                        invite
+                      </Button>
+                    ) : (
+                      <span className="text-sm text-zinc-500">invited</span>
+                    )}
+                  </div>
+                )}
+              </div>
+            ))}
         </ScrollArea>
       </DialogContent>
     </Dialog>
