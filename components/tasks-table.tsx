@@ -27,9 +27,14 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
   const { onOpen } = useModal();
   const { appData, setAppData } = useDataContext();
 
-  const findUser = (id: string) => {
+  const findUserUrl = (id: string) => {
     const user = appData.users.find((user) => user.id === id);
     return user?.profilePicture;
+  };
+
+  const findUserName = (id: string) => {
+    const user = appData.users.find((user) => user.id === id);
+    return user?.username;
   };
 
   if (!tasks.length) {
@@ -46,10 +51,10 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
       <TableHeader>
         <TableRow>
           <TableHead className="w-[450px]">Task name</TableHead>
-          <TableHead className="w-[250px]">Assignee</TableHead>
-          <TableHead className="w-[200px]">Due date</TableHead>
+          <TableHead className="w-[350px]">Assignee</TableHead>
+          <TableHead className="w-[150px]">Due date</TableHead>
           <TableHead className="w-[150px]">Priority</TableHead>
-          <TableHead className="w-[200px]">Status</TableHead>
+          <TableHead className="w-[150px]">Status</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -65,12 +70,19 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
                       taskId: task.id,
                     })
                   }
-                  className="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-500 outline-none hover:bg-zinc-500"
+                  className="flex items-center justify-center rounded-full border border-zinc-500 outline-none hover:bg-zinc-500"
                 >
-                  <Plus className="h-5 w-5 p-1" />
+                  <Plus className="h-7 w-7 p-1" />
                 </button>
               ) : (
-                <p>{<UserAvatar src={findUser(task.assignedTo)} classname="h-5 w-5" />}</p>
+                <p>
+                  {
+                    <div className="flex items-center gap-2">
+                      <UserAvatar src={findUserUrl(task.assignedTo)} />
+                      <p>{findUserName(task.assignedTo)}</p>
+                    </div>
+                  }
+                </p>
               )}
             </TableCell>
             <TableCell>
