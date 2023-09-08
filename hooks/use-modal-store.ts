@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ModalType = "initialModal" | "addTask";
+export type ModalType = "addTask";
 
 interface ModalData {}
 

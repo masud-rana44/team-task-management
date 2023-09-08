@@ -1,3 +1,5 @@
+import { format } from "date-fns";
+
 import {
   Table,
   TableBody,
@@ -17,6 +19,10 @@ interface TaskTableProps {
 }
 
 export const TaskTable = ({ tasks }: TaskTableProps) => {
+  if (!tasks.length) {
+    return <p>No task found</p>;
+  }
+
   return (
     <Table>
       <TableCaption>All Tasks</TableCaption>
@@ -32,7 +38,9 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
         {tasks.map((task: Task) => (
           <TableRow key={task.id}>
             <TableCell className="font-medium">{task.title}</TableCell>
-            <TableCell>{task.dueDate}</TableCell>
+            <TableCell>
+              {format(new Date(task.dueDate), "dd/MM/yyyy")}
+            </TableCell>
             <TableCell>{task.priority}</TableCell>
             <TableCell>{task.status}</TableCell>
             <TableCell>

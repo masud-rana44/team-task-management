@@ -26,7 +26,7 @@ export interface Task {
   status: "completed" | "in_progress" | "pending";
   assignedTo?: string;
   creatorId?: string;
-  teamId?: string;
+  teamId: string | string[];
 }
 
 export interface AppData {

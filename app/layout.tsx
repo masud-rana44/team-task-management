@@ -4,7 +4,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
-import { ModalProvider } from "@/components/provider/modal-provider";
+import { ModalProvider } from "@/components/providers/modal-provider";
 import DataProvider from "@/contexts/data-context";
 
 const font = Open_Sans({ subsets: ["latin"] });

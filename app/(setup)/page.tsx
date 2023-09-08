@@ -27,7 +27,6 @@ const SetupPage = () => {
       teams: [],
       invitations: [],
     };
-    console.log(profile);
     setAppData({ ...appData, users: [...appData.users, profile] });
   }
 
@@ -35,9 +34,9 @@ const SetupPage = () => {
     team.members.find((memberId) => memberId === profile?.id),
   );
 
-  console.log(team);
-
-  if (team) return redirect(`/teams/${team.id}`);
+  if (team) {
+    return redirect(`/teams/${team.id}`);
+  }
 
   return <InitialModal />;
 };

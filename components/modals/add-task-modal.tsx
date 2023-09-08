@@ -4,7 +4,7 @@ import * as z from "zod";
 import { v4 as uuidv4 } from "uuid";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 import React from "react";
@@ -64,6 +64,7 @@ const formSchema = z.object({
 export const AddTaskModal = () => {
   const { user } = useUser();
   const router = useRouter();
+  const params = useParams();
   const { isOpen, onClose, type } = useModal();
   const { appData, setAppData } = useDataContext();
 
@@ -88,10 +89,15 @@ export const AddTaskModal = () => {
         ...values,
         id: uuidv4(),
         creatorId: user?.id,
-        teamId: "sldfj934543",
+        teamId: params.teamId,
         assignedTo: "",
         dueDate: values.dueDate.toISOString(),
       };
+
+      appData.teams
+        .find((team) => team.id === params.teamId)
+        ?.tasks.push(newTask.id);
+      appData.users.find((u) => u.id === user?.id)?.tasks.push(newTask.id);
 
       setAppData({ ...appData, tasks: [...appData.tasks, newTask] });
 

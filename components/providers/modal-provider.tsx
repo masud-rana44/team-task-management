@@ -15,7 +15,6 @@ export const ModalProvider = () => {
 
   return (
     <>
-      <InitialModal />
       <AddTaskModal />
     </>
   );
