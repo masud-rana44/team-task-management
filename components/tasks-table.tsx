@@ -20,7 +20,11 @@ interface TaskTableProps {
 
 export const TaskTable = ({ tasks }: TaskTableProps) => {
   if (!tasks.length) {
-    return <p>No task found</p>;
+    return (
+      <p className="flex h-40 w-full items-center justify-center text-[#a2a0a2]">
+        No task found
+      </p>
+    );
   }
 
   return (
@@ -39,7 +43,7 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
           <TableRow key={task.id}>
             <TableCell className="font-medium">{task.title}</TableCell>
             <TableCell>
-              {format(new Date(task.dueDate), "dd/MM/yyyy")}
+              {format(new Date(task.dueDate), "dd LLL yyyy")}
             </TableCell>
             <TableCell>{task.priority}</TableCell>
             <TableCell>{task.status}</TableCell>

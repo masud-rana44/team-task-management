@@ -2,6 +2,7 @@ import { Separator } from "@/components/ui/separator";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { NavigationHeader } from "./navigation-header";
 import { NavigationTeams } from "./navigation-teams";
+import { NavigationPeoples } from "./navigation-members";
 
 export const NavigationSidebar = async () => {
   return (
@@ -10,6 +11,7 @@ export const NavigationSidebar = async () => {
       <Separator className="mx-auto bg-zinc-300 dark:bg-[#454547]" />
       <ScrollArea className="w-full flex-1">
         <NavigationTeams />
+        <NavigationPeoples />
       </ScrollArea>
     </div>
   );

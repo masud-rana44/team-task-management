@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-export type ModalType = "addTask";
+export type ModalType = "addTask" | "createTeam" | "members";
 
 interface ModalData {}
 
