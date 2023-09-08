@@ -51,8 +51,8 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
       <TableHeader>
         <TableRow>
           <TableHead className="w-[450px]">Task name</TableHead>
-          <TableHead className="w-[350px]">Assignee</TableHead>
-          <TableHead className="w-[150px]">Due date</TableHead>
+          <TableHead className="w-[250px]">Assignee</TableHead>
+          <TableHead className="w-[200px]">Due date</TableHead>
           <TableHead className="w-[150px]">Priority</TableHead>
           <TableHead className="w-[150px]">Status</TableHead>
         </TableRow>
