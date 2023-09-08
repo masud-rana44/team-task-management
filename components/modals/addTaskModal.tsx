@@ -4,6 +4,7 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+import { v4 as uuidv4 } from "uuid";
 
 import {
   Dialog,
@@ -45,6 +46,9 @@ import {
 } from "@/components/ui/popover";
 import React from "react";
 import { ScrollArea } from "../ui/scroll-area";
+import { useLocalStorageState } from "@/hooks/useLocalStorageState";
+import { useDataContext } from "@/contexts/data-context";
+import { useUser } from "@clerk/nextjs";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -61,8 +65,10 @@ const formSchema = z.object({
 });
 
 export const AddTaskModal = () => {
+  const { user } = useUser();
   const router = useRouter();
   const { isOpen, onClose, type } = useModal();
+  const { appData, setAppData } = useDataContext();
 
   const isModalOpen = isOpen && type === "addTask";
 
@@ -81,7 +87,17 @@ export const AddTaskModal = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log(values);
+      const newTask = {
+        ...values,
+        id: uuidv4(),
+        creatorId: user?.id,
+        teamId: "sldfj934543",
+        assignedTo: "",
+        dueDate: values.dueDate.toISOString(),
+      };
+      console.log(appData.tasks);
+
+      setAppData({ ...appData, tasks: [...appData.tasks, newTask] });
 
       form.reset();
       router.refresh();

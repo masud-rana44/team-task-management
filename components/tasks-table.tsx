@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/table";
 
 import { Task } from "@/types";
-import { MoreVertical } from "lucide-react";
+
+import { TaskMenu } from "./task-menu";
 
 interface TaskTableProps {
   tasks: Task[];
@@ -35,7 +36,7 @@ export const TaskTable = ({ tasks }: TaskTableProps) => {
             <TableCell>{task.priority}</TableCell>
             <TableCell>{task.status}</TableCell>
             <TableCell>
-              <MoreVertical />
+              <TaskMenu />
             </TableCell>
           </TableRow>
         ))}

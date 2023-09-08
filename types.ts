@@ -1,16 +1,18 @@
 export interface User {
   id: string;
-  username: string;
-  email: string;
+  username: string | null;
+  email: string | undefined;
   profilePicture: string;
   bio: string;
   tasks: string[];
   teams: string[];
+  invitations: string[];
 }
 
 export interface Team {
   id: string;
   name: string;
+  inviteLink: string;
   members: string[];
   tasks: string[];
 }
@@ -22,7 +24,9 @@ export interface Task {
   dueDate: string;
   priority: "high" | "medium" | "low";
   status: "completed" | "in_progress" | "pending";
-  assignedTo: string;
+  assignedTo?: string;
+  creatorId?: string;
+  teamId?: string;
 }
 
 export interface AppData {

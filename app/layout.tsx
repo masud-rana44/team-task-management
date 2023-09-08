@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 import { ModalProvider } from "@/components/provider/modal-provider";
+import DataProvider from "@/contexts/data-context";
 
 const font = Open_Sans({ subsets: ["latin"] });
 
@@ -29,8 +30,10 @@ export default function RootLayout({
             enableSystem
             storageKey="task-management-theme"
           >
-            <ModalProvider />
-            {children}
+            <DataProvider>
+              <ModalProvider />
+              {children}
+            </DataProvider>
           </ThemeProvider>
         </body>
       </html>
