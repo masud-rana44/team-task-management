@@ -1,34 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<h1 align="center">
+TaskifyPro | Manage Task with Teams</h1>
 
-## Getting Started
+<p align="center"><img src="./public/task-2-dark.PNG" alt="Taskify Banner"></p>
 
-First, run the development server:
+<p>This is the repository for TaskifyPro an Online Task Management Site with  Next.js, TypeScript, Tailwind ShadcnUI, and Clark.</p>
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## 📝 Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- In this React.js application, implemented admin, contest creator, and user authorization.
+- Admin can
+  approve or reject submitted contests, view and manage all contests, delete any contest, manage users and their roles (admin, contest creator, user).
+- The contest creator can add contests, edit and manage created contests, view submissions, and declare contest winners.
+- Users can register for contests and submit tasks, track progress in registered contests, view past participation details and winnings,
+  update profile information.
+- Stripe payment integration, fully responsive, pagination, JWT, leaderboards for top participants, toast notifications, login, and register.
+- Coin systems allow creators to purchase coins for creating a specific number of contests.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Important Links
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- Live Website link: [https://contest-platform-d8309.web.app](https://contest-platform-d8309.web.app)
+- Server site repo link: [https://github.com/masud-rana44/talent-hunt-server](https://github.com/masud-rana44/talent-hunt-server)
 
-## Learn More
+## 🔐 Demo Account
 
-To learn more about Next.js, take a look at the following resources:
+Explore the application using these demo accounts:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Admin**: (Email: admin@example.com, Password: #Test1234)
+- **Contest Creator**: (Email: creator@example.com, Password: #Test1234)
+- **User**: (Email: user@example.com, Password: #Test1234)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## 💻 Technology Used
 
-## Deploy on Vercel
+The contest site is built using the following technologies and libraries:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+| Frontend Technologies | Backend Technologies  |
+| --------------------- | --------------------- |
+| React                 | Express               |
+| Tailwind CSS          | MongoDB               |
+| Firebase              | Mongoose              |
+| Material-UI           | JWT (JSON Web Tokens) |
+| React Query           | Stripe                |
+| Axios                 |
+| Framer Motion         |
+| React Router          |
+| React Hook Form       |
+| Swiper                |
+| Recharts              |
+| Moment                |
+| React Spinners        |
+| React Dropzone        |
+| React Countdown       |
+| React Hot Toast       |
+| React Icons           |
+| Query String          |
+| React Helmet Async    |
+| Cloudinary            |
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<h3>💖Like my work?</h3>
+
+This project needs a ⭐️ from you. Don't forget to leave a star ⭐️.
